@@ -45,8 +45,8 @@ public class CharacterMove : MonoBehaviour
     {
         // Detect down direction Logic
         var circleOrigin = transform.right * -0.065f + transform.up * -0.0875f;
-        // var hitPoints = Physics2D.CircleCastAll(transform.position + circleOrigin, 0.05f, Vector2.down);
-        var hitPoints = Physics2D.RaycastAll(transform.position + circleOrigin, -transform.up, 0.1f);
+        var hitPoints =
+            Physics2D.RaycastAll(transform.position + circleOrigin, -transform.up, 0.1f, LayerMask.GetMask("Platform"));
 
         if (hitPoints.Length > 0)
         {
@@ -54,7 +54,6 @@ public class CharacterMove : MonoBehaviour
                 hitPoints
                 .Where(hit => hit.collider.gameObject != gameObject)
                 .Aggregate(Vector2.zero, (current, hit) => current - hit.normal);
-            //hitPoints.Aggregate(Vector2.zero, (current, hit) => current - hit.normal);
             downDirection = calculatedDown.normalized;
         }
         else downDirection = Vector2.down;
