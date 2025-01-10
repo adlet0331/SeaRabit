@@ -33,7 +33,7 @@ public class CharacterMove : MonoBehaviour
     
     private Vector2 RightDirection => new Vector2(-downDirection.y, downDirection.x); // downDirection rotated +90 degrees
     
-    public float Stamina { get; private set; }
+    public StaminaSystem staminaSystem;
     
     #region Movement Logic
 
@@ -79,13 +79,13 @@ public class CharacterMove : MonoBehaviour
         if (ceilingHolding)
         {
             ceilingHolding = hitPoints.Length > 0;
-            ceilingDirection = ceilingHolding ? hitPoints[0].normal : Vector2.up;
+            ceilingDirection = ceilingHolding ? -hitPoints[0].normal : Vector2.up;
             return;
         }
 
         ceilingHoldable = hitPoints.Length > 0;
 
-        ceilingDirection = ceilingHoldable ? hitPoints[0].normal : transform.up;
+        ceilingDirection = ceilingHoldable ? -hitPoints[0].normal : Vector2.zero;
     }
 
     private void MovementNormal(bool stamina = false)
@@ -102,7 +102,7 @@ public class CharacterMove : MonoBehaviour
             
         moveState = 0;
     }
-    private void MovementCeiling()
+    private void MovementCeiling(bool stamina = true)
     {
         if (Mathf.Abs(moveState) < 3) return;
         
@@ -136,7 +136,7 @@ public class CharacterMove : MonoBehaviour
         ceilingHoldable = false;
         ceilingHolding = false;
 
-        Stamina = 100f;
+        staminaSystem = GetComponent<StaminaSystem>();
     }
 
     private void Update()
@@ -148,12 +148,12 @@ public class CharacterMove : MonoBehaviour
         if (moveTimer > 0f)  moveTimer -= Time.deltaTime;
         else moveState = 0;
 
-        if (ceilingHolding)
+        if (ceilingHolding && staminaSystem.CanUseStamina)
         {
             MovementCeiling();
-            _rb2d.AddForce((Vector2.down - ceilingDirection.normalized) * (Physics2D.gravity.y * _rb2d.gravityScale), ForceMode2D.Force);
+            _rb2d.AddForce((Vector2.down - ceilingDirection.normalized) * (Physics2D.gravity.y * _rb2d.gravityScale * 0.5f), ForceMode2D.Force);
         }
-        else MovementNormal(spacePressed);
+        else MovementNormal(spacePressed && staminaSystem.CanUseStamina);
         
         // Limit Velocity and Rotation
         _rb2d.velocity = new Vector2(Mathf.Clamp(_rb2d.velocity.x, -maxSpeed, maxSpeed), _rb2d.velocity.y);
@@ -225,6 +225,7 @@ public class CharacterMove : MonoBehaviour
     private void OnKeySpace(InputValue value)
     {
         spacePressed = value.Get<float>() > 0;
+        staminaSystem.tryUseStamina = spacePressed;
         if (spacePressed && ceilingHoldable)
         {
             ceilingHolding = true;
@@ -245,10 +246,10 @@ public class CharacterMove : MonoBehaviour
         
         Gizmos.color = Color.red;
         Gizmos.DrawLine(originPoint, originPoint - transform.up * raycastDistance);
+        Gizmos.DrawLine(transform.position, transform.position + Vector3.up * raycastDistance);
 
         Gizmos.color = Color.green;
         Gizmos.DrawLine(originPoint, originPoint + (Vector3)downDirection * raycastDistance);
-        
         Gizmos.DrawLine(transform.position, transform.position + (Vector3)ceilingDirection * raycastDistance);
     }
     
