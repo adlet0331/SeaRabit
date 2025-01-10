@@ -22,8 +22,13 @@ public class CharacterMove : MonoBehaviour
     private float moveTimer;
     private int lookDirection;
     private Vector2 downDirection;
+    private Vector2 ceilingDirection;
 
     private bool isGrounded;
+    private bool ceilingHoldable;
+
+    private bool upPressed;
+    private bool spacePressed;
     
     private Vector2 RightDirection => new Vector2(-downDirection.y, downDirection.x); // downDirection rotated +90 degrees
     
@@ -33,15 +38,18 @@ public class CharacterMove : MonoBehaviour
 
     private void DetectDownDirection()
     {
-        var circleOrigin = transform.right * -0.065f + transform.up * -0.0875f;
-        var hitPoints =
-            Physics2D.RaycastAll(transform.position + circleOrigin, -transform.up, raycastDistance, LayerMask.GetMask("Platform"));
+        var pointOrigin = transform.right * -0.065f + transform.up * -0.0875f;
+        var hitPoints = Physics2D.RaycastAll(
+            transform.position + pointOrigin,
+            -transform.up,
+            raycastDistance,
+            LayerMask.GetMask("Platform"))
+            ;
 
         if (hitPoints.Length > 0)
         {
             var calculatedDown =
                 hitPoints
-                    .Where(hit => hit.collider.gameObject != gameObject)
                     .Aggregate(Vector2.zero, (current, hit) => current - hit.normal);
             downDirection = calculatedDown.normalized;
             isGrounded = true;
@@ -51,6 +59,25 @@ public class CharacterMove : MonoBehaviour
             downDirection = Vector2.down;
             isGrounded = false;
         }
+    }
+    private void DetectUpDirection()
+    {
+        if (!upPressed)
+        {
+            ceilingHoldable = false;
+            return;
+        }
+        
+        var hitPoints = Physics2D.RaycastAll(
+            transform.position,
+            transform.up,
+            raycastDistance,
+            LayerMask.GetMask("Platform"))
+            ;
+
+        ceilingHoldable = hitPoints.Length > 0;
+
+        ceilingDirection = ceilingHoldable ? hitPoints[0].normal : transform.up;
     }
     
     #endregion
@@ -70,6 +97,7 @@ public class CharacterMove : MonoBehaviour
         downDirection = Vector2.down;
         
         isGrounded = false;
+        ceilingHoldable = false;
 
         Stamina = 100f;
     }
@@ -77,6 +105,7 @@ public class CharacterMove : MonoBehaviour
     private void Update()
     {
         DetectDownDirection();
+        DetectUpDirection();
         
         // Move Logic
         if (moveTimer > 0f)  moveTimer -= Time.deltaTime;
@@ -105,7 +134,7 @@ public class CharacterMove : MonoBehaviour
     
     private void OnKeyW(InputValue value)
     {
-        if (!value.isPressed) return;
+        upPressed = value.isPressed;
     }
 
     private void OnKeyA(InputValue value)
@@ -161,7 +190,7 @@ public class CharacterMove : MonoBehaviour
 
     private void OnKeySpace(InputValue value)
     {
-        if (!value.isPressed) return;
+        spacePressed = value.isPressed;
     }
     
     #endregion
@@ -177,6 +206,8 @@ public class CharacterMove : MonoBehaviour
 
         Gizmos.color = Color.green;
         Gizmos.DrawLine(originPoint, originPoint + (Vector3)downDirection * raycastDistance);
+        
+        Gizmos.DrawLine(transform.position, transform.position + (Vector3)ceilingDirection * raycastDistance);
     }
     
     #endregion
