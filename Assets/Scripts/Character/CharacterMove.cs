@@ -19,8 +19,7 @@ public class CharacterMove : MonoBehaviour
     private float moveTimer;
     private Vector2 downDirection;
     
-    private Vector2 leftDirection => new Vector2(downDirection.y, -downDirection.x);
-    private Vector2 rightDirection => new Vector2(downDirection.y, -downDirection.x);
+    private Vector2 RightDirection => new Vector2(-downDirection.y, downDirection.x);
     
     public float Stamina { get; private set; }
     
@@ -29,6 +28,8 @@ public class CharacterMove : MonoBehaviour
     
     private void Awake()
     {
+        // Init Components and Variables
+        
         _rb2d = GetComponent<Rigidbody2D>();
         _sr = GetComponent<SpriteRenderer>();
 
@@ -41,24 +42,28 @@ public class CharacterMove : MonoBehaviour
 
     private void Update()
     {
+        // Move Logic
         if (moveTimer > 0f)  moveTimer -= Time.deltaTime;
         else moveState = 0;
 
         if (Mathf.Abs(moveState) >= 3)
         {
-            _rb2d.AddForce(new Vector2(moveSpeed * Mathf.Sign(moveState), 0f), ForceMode2D.Impulse);
+            var moveDirection = Mathf.Sign(moveState);
+            _rb2d.AddForce(RightDirection * moveDirection, ForceMode2D.Impulse);
+            
+            _sr.flipX = moveDirection < 0;
             
             moveState = 0;
         }
         
+        // Limit Velocity and Rotation
         _rb2d.velocity = new Vector2(Mathf.Clamp(_rb2d.velocity.x, -maxSpeed, maxSpeed), _rb2d.velocity.y);
-        
-        if (Mathf.Abs(_rb2d.velocity.x) >= 0.01f) _sr.flipX = _rb2d.velocity.x < 0;
+        _rb2d.rotation = Mathf.Clamp(_rb2d.rotation, -90f, 90f);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        downDirection = -collision.transform.up;
+        downDirection = -collision.contacts[0].normal;
     }
     
     #endregion
@@ -127,6 +132,4 @@ public class CharacterMove : MonoBehaviour
     }
     
     #endregion
-    
-    
 }
