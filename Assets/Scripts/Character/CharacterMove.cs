@@ -10,6 +10,8 @@ public class CharacterMove : MonoBehaviour
     public float moveSpeed = 5f;
     public float maxSpeed = 3f;
     public float moveBufferTime = 0.05f;
+    [Space()]
+    public float raycastDistance = 0.5f;
     
     // Components
     private Rigidbody2D _rb2d;
@@ -18,7 +20,10 @@ public class CharacterMove : MonoBehaviour
     // Internal Variables
     private int moveState;
     private float moveTimer;
+    private int lookDirection;
     private Vector2 downDirection;
+
+    private bool isGrounded;
     
     private Vector2 RightDirection => new Vector2(-downDirection.y, downDirection.x);
     
@@ -36,7 +41,10 @@ public class CharacterMove : MonoBehaviour
 
         moveState = 0;
         moveTimer = 0f;
+        lookDirection = 1;
         downDirection = Vector2.down;
+        
+        isGrounded = false;
 
         Stamina = 100f;
     }
@@ -46,7 +54,7 @@ public class CharacterMove : MonoBehaviour
         // Detect down direction Logic
         var circleOrigin = transform.right * -0.065f + transform.up * -0.0875f;
         var hitPoints =
-            Physics2D.RaycastAll(transform.position + circleOrigin, -transform.up, 0.1f, LayerMask.GetMask("Platform"));
+            Physics2D.RaycastAll(transform.position + circleOrigin, -transform.up, raycastDistance, LayerMask.GetMask("Platform"));
 
         if (hitPoints.Length > 0)
         {
@@ -55,8 +63,13 @@ public class CharacterMove : MonoBehaviour
                 .Where(hit => hit.collider.gameObject != gameObject)
                 .Aggregate(Vector2.zero, (current, hit) => current - hit.normal);
             downDirection = calculatedDown.normalized;
+            isGrounded = true;
         }
-        else downDirection = Vector2.down;
+        else
+        {
+            downDirection = Vector2.down;
+            isGrounded = false;
+        }
         
         // Move Logic
         if (moveTimer > 0f)  moveTimer -= Time.deltaTime;
@@ -64,10 +77,10 @@ public class CharacterMove : MonoBehaviour
 
         if (Mathf.Abs(moveState) >= 3)
         {
-            var moveDirection = Mathf.Sign(moveState);
-            _rb2d.AddForce(RightDirection * moveDirection, ForceMode2D.Impulse);
+            lookDirection = (int)Mathf.Sign(moveState);
+            _rb2d.AddForce(RightDirection * lookDirection, ForceMode2D.Impulse);
             
-            _sr.flipX = moveDirection < 0;
+            _sr.flipX = lookDirection < 0;
             
             moveState = 0;
         }
@@ -75,6 +88,8 @@ public class CharacterMove : MonoBehaviour
         // Limit Velocity and Rotation
         _rb2d.velocity = new Vector2(Mathf.Clamp(_rb2d.velocity.x, -maxSpeed, maxSpeed), _rb2d.velocity.y);
         _rb2d.rotation = Mathf.Clamp(_rb2d.rotation, -45f, 45f);
+        
+        if (!isGrounded) _rb2d.AddTorque(-_rb2d.rotation / 90f * 0.25f, ForceMode2D.Force);
     }
     
     #endregion
@@ -151,10 +166,10 @@ public class CharacterMove : MonoBehaviour
         var originPoint = transform.position + transform.right * -0.065f + transform.up * -0.0875f;
         
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(originPoint, originPoint - transform.up * 0.1f);
+        Gizmos.DrawLine(originPoint, originPoint - transform.up * raycastDistance);
 
         Gizmos.color = Color.green;
-        Gizmos.DrawLine(originPoint, originPoint + (Vector3)downDirection * 0.1f);
+        Gizmos.DrawLine(originPoint, originPoint + (Vector3)downDirection * raycastDistance);
     }
     
     #endregion
