@@ -42,36 +42,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "KeyUp",
+                    "name": "KeySpace",
                     "type": "Button",
-                    "id": "484cf37d-ab11-433f-920a-6cf13c7b07d3",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "KeyLeft",
-                    "type": "Button",
-                    "id": "9a8b56f2-3ec2-4136-993c-b8bfa11a71fa",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "KeyDown",
-                    "type": "Button",
-                    "id": "841d7085-1cab-4907-9813-097b06fca449",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "KeyRight",
-                    "type": "Button",
-                    "id": "4b13e134-e8e1-4097-9f5d-a06f07ea9002",
+                    "id": "871afd8e-8ba4-444d-b9a0-cf71c292038e",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -125,45 +98,12 @@
                 },
                 {
                     "name": "",
-                    "id": "edc3ff9c-e727-40e6-b022-91d1e9e3f8f1",
-                    "path": "<Keyboard>/upArrow",
+                    "id": "4ebad298-7f78-4807-97f1-2fb63b4e9e58",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "KeyUp",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "4cc7794d-fcf8-4895-a6e9-475f5096928c",
-                    "path": "<Keyboard>/leftArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "KeyLeft",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "795bf658-7ea7-4f48-bd32-158e2e9bc064",
-                    "path": "<Keyboard>/downArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "KeyDown",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "c341a68b-4009-4766-b8e6-aaeccb9cb289",
-                    "path": "<Keyboard>/rightArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "KeyRight",
+                    "action": "KeySpace",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
