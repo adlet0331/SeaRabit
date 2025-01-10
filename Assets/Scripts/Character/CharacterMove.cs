@@ -26,6 +26,7 @@ public class CharacterMove : MonoBehaviour
 
     private bool isGrounded;
     private bool ceilingHoldable;
+    private bool ceilingHolding;
 
     private bool upPressed;
     private bool spacePressed;
@@ -62,7 +63,7 @@ public class CharacterMove : MonoBehaviour
     }
     private void DetectUpDirection()
     {
-        if (!upPressed)
+        if (!upPressed && !spacePressed)
         {
             ceilingHoldable = false;
             return;
@@ -75,9 +76,43 @@ public class CharacterMove : MonoBehaviour
             LayerMask.GetMask("Platform"))
             ;
 
+        if (ceilingHolding)
+        {
+            ceilingDirection = Vector2.up;
+            return;
+        }
+
         ceilingHoldable = hitPoints.Length > 0;
 
         ceilingDirection = ceilingHoldable ? hitPoints[0].normal : transform.up;
+    }
+
+    private void MovementNormal(bool stamina = false)
+    {
+        if (Mathf.Abs(moveState) < 3) return;
+        
+        lookDirection = (int)Mathf.Sign(moveState);
+
+        var forceDirection = RightDirection * lookDirection;
+        if (stamina && forceDirection.y > 0.5f) return; // Prevent Uphill when not using stamina
+        else _rb2d.AddForce(forceDirection, ForceMode2D.Impulse);
+            
+        _sr.flipX = lookDirection < 0;
+            
+        moveState = 0;
+    }
+    private void MovementCeiling()
+    {
+        if (Mathf.Abs(moveState) < 3) return;
+        
+        lookDirection = (int)Mathf.Sign(moveState);
+
+        var forceDirection = RightDirection * lookDirection;
+        _rb2d.AddForce(forceDirection, ForceMode2D.Impulse);
+            
+        _sr.flipX = lookDirection < 0;
+            
+        moveState = 0;
     }
     
     #endregion
@@ -98,6 +133,7 @@ public class CharacterMove : MonoBehaviour
         
         isGrounded = false;
         ceilingHoldable = false;
+        ceilingHolding = false;
 
         Stamina = 100f;
     }
@@ -111,15 +147,12 @@ public class CharacterMove : MonoBehaviour
         if (moveTimer > 0f)  moveTimer -= Time.deltaTime;
         else moveState = 0;
 
-        if (Mathf.Abs(moveState) >= 3)
+        if (ceilingHolding)
         {
-            lookDirection = (int)Mathf.Sign(moveState);
-            _rb2d.AddForce(RightDirection * lookDirection, ForceMode2D.Impulse);
-            
-            _sr.flipX = lookDirection < 0;
-            
-            moveState = 0;
+            MovementCeiling();
+            _rb2d.AddForce(Vector2.down * (Physics2D.gravity.y * _rb2d.gravityScale) + ceilingDirection, ForceMode2D.Force);
         }
+        else MovementNormal();
         
         // Limit Velocity and Rotation
         _rb2d.velocity = new Vector2(Mathf.Clamp(_rb2d.velocity.x, -maxSpeed, maxSpeed), _rb2d.velocity.y);
@@ -134,7 +167,7 @@ public class CharacterMove : MonoBehaviour
     
     private void OnKeyW(InputValue value)
     {
-        upPressed = value.isPressed;
+        upPressed = value.Get<float>() > 0;
     }
 
     private void OnKeyA(InputValue value)
@@ -190,7 +223,15 @@ public class CharacterMove : MonoBehaviour
 
     private void OnKeySpace(InputValue value)
     {
-        spacePressed = value.isPressed;
+        spacePressed = value.Get<float>() > 0;
+        if (spacePressed && ceilingHoldable)
+        {
+            ceilingHolding = true;
+        }
+        if (!value.isPressed)
+        {
+            ceilingHolding = false;
+        }
     }
     
     #endregion
