@@ -7,12 +7,12 @@
             "actions": [
                 {
                     "name": "KeyW",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "8703bc33-fc61-44d2-860e-67400f53037e",
-                    "expectedControlType": "",
+                    "expectedControlType": "Integer",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "KeyA",
@@ -43,12 +43,12 @@
                 },
                 {
                     "name": "KeySpace",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "871afd8e-8ba4-444d-b9a0-cf71c292038e",
-                    "expectedControlType": "",
+                    "expectedControlType": "Integer",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
