@@ -8,7 +8,6 @@ namespace MapReset
         [SerializeField] private ControllMapReset resetObject; 
         private void OnCollisionEnter2D(Collision2D col)
         {
-            Debug.Log("Colided");
             if (col.gameObject.layer != 6) return;
             resetObject.ResetMap();
         }
