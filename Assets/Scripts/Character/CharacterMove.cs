@@ -25,10 +25,35 @@ public class CharacterMove : MonoBehaviour
 
     private bool isGrounded;
     
-    private Vector2 RightDirection => new Vector2(-downDirection.y, downDirection.x);
+    private Vector2 RightDirection => new Vector2(-downDirection.y, downDirection.x); // downDirection rotated +90 degrees
     
     public float Stamina { get; private set; }
     
+    #region Movement Logic
+
+    private void DetectDownDirection()
+    {
+        var circleOrigin = transform.right * -0.065f + transform.up * -0.0875f;
+        var hitPoints =
+            Physics2D.RaycastAll(transform.position + circleOrigin, -transform.up, raycastDistance, LayerMask.GetMask("Platform"));
+
+        if (hitPoints.Length > 0)
+        {
+            var calculatedDown =
+                hitPoints
+                    .Where(hit => hit.collider.gameObject != gameObject)
+                    .Aggregate(Vector2.zero, (current, hit) => current - hit.normal);
+            downDirection = calculatedDown.normalized;
+            isGrounded = true;
+        }
+        else
+        {
+            downDirection = Vector2.down;
+            isGrounded = false;
+        }
+    }
+    
+    #endregion
     
     #region Unity Events
     
@@ -51,25 +76,7 @@ public class CharacterMove : MonoBehaviour
 
     private void Update()
     {
-        // Detect down direction Logic
-        var circleOrigin = transform.right * -0.065f + transform.up * -0.0875f;
-        var hitPoints =
-            Physics2D.RaycastAll(transform.position + circleOrigin, -transform.up, raycastDistance, LayerMask.GetMask("Platform"));
-
-        if (hitPoints.Length > 0)
-        {
-            var calculatedDown =
-                hitPoints
-                .Where(hit => hit.collider.gameObject != gameObject)
-                .Aggregate(Vector2.zero, (current, hit) => current - hit.normal);
-            downDirection = calculatedDown.normalized;
-            isGrounded = true;
-        }
-        else
-        {
-            downDirection = Vector2.down;
-            isGrounded = false;
-        }
+        DetectDownDirection();
         
         // Move Logic
         if (moveTimer > 0f)  moveTimer -= Time.deltaTime;
@@ -159,7 +166,7 @@ public class CharacterMove : MonoBehaviour
     
     #endregion
     
-    #region Debug Actions
+    #region Debug / Gizmos Actions
 
     private void OnDrawGizmos()
     {
