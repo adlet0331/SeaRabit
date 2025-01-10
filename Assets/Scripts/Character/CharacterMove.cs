@@ -12,32 +12,52 @@ public class CharacterMove : MonoBehaviour
     
     // Components
     private Rigidbody2D _rb2d;
+    private SpriteRenderer _sr;
     
     // Internal Variables
-    private int _moveState = 0;
-    private float _moveTimer = 0f;
+    private int moveState;
+    private float moveTimer;
+    private Vector2 downDirection;
+    
+    private Vector2 leftDirection => downDirection.
+    
+    public float Stamina { get; private set; }
+    
     
     #region Unity Events
     
     private void Awake()
     {
         _rb2d = GetComponent<Rigidbody2D>();
+        _sr = GetComponent<SpriteRenderer>();
+
+        moveState = 0;
+        moveTimer = 0f;
+        downDirection = Vector2.down;
+
+        Stamina = 100f;
     }
 
     private void Update()
     {
-        if (_moveTimer > 0f)  _moveTimer -= Time.deltaTime;
-        else _moveState = 0;
+        if (moveTimer > 0f)  moveTimer -= Time.deltaTime;
+        else moveState = 0;
 
-        if (Mathf.Abs(_moveState) >= 3)
+        if (Mathf.Abs(moveState) >= 3)
         {
-            // _rb2d.velocity = new Vector2(moveSpeed * Mathf.Sign(_moveState), _rb2d.velocity.y);
-            _rb2d.AddForce(new Vector2(moveSpeed * Mathf.Sign(_moveState), 0f), ForceMode2D.Impulse);
+            _rb2d.AddForce(new Vector2(moveSpeed * Mathf.Sign(moveState), 0f), ForceMode2D.Impulse);
             
-            _moveState = 0;
+            moveState = 0;
         }
         
         _rb2d.velocity = new Vector2(Mathf.Clamp(_rb2d.velocity.x, -maxSpeed, maxSpeed), _rb2d.velocity.y);
+        
+        if (Mathf.Abs(_rb2d.velocity.x) >= 0.01f) _sr.flipX = _rb2d.velocity.x < 0;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        downDirection = -collision.transform.up;
     }
     
     #endregion
@@ -53,15 +73,15 @@ public class CharacterMove : MonoBehaviour
     {
         if (!value.isPressed) return;
         
-        switch (_moveState)
+        switch (moveState)
         {
             case 0:
-                _moveState = 1;
-                _moveTimer = moveBufferTime;
+                moveState = 1;
+                moveTimer = moveBufferTime;
                 break;
             case -2:
-                _moveState = -3;
-                _moveTimer = moveBufferTime;
+                moveState = -3;
+                moveTimer = moveBufferTime;
                 break;
         }
     }
@@ -70,15 +90,15 @@ public class CharacterMove : MonoBehaviour
     {
         if (!value.isPressed) return;
 
-        switch (_moveState)
+        switch (moveState)
         {
             case 1:
-                _moveState = 2;
-                _moveTimer = moveBufferTime;
+                moveState = 2;
+                moveTimer = moveBufferTime;
                 break;
             case -1:
-                _moveState = -2;
-                _moveTimer = moveBufferTime;
+                moveState = -2;
+                moveTimer = moveBufferTime;
                 break;
         }
     }
@@ -87,15 +107,15 @@ public class CharacterMove : MonoBehaviour
     {
         if (!value.isPressed) return;
 
-        switch (_moveState)
+        switch (moveState)
         {
             case 2:
-                _moveState = 3;
-                _moveTimer = moveBufferTime;
+                moveState = 3;
+                moveTimer = moveBufferTime;
                 break;
             case 0:
-                _moveState = -1;
-                _moveTimer = moveBufferTime;
+                moveState = -1;
+                moveTimer = moveBufferTime;
                 break;
         }
     }
