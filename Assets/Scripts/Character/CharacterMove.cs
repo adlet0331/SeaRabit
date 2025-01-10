@@ -19,7 +19,8 @@ public class CharacterMove : MonoBehaviour
     private float moveTimer;
     private Vector2 downDirection;
     
-    private Vector2 leftDirection => downDirection.
+    private Vector2 leftDirection => new Vector2(downDirection.y, -downDirection.x);
+    private Vector2 rightDirection => new Vector2(downDirection.y, -downDirection.x);
     
     public float Stamina { get; private set; }
     
