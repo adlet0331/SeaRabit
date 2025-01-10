@@ -12,6 +12,7 @@ public class CharacterMove : MonoBehaviour
     
     // Components
     private Rigidbody2D _rb2d;
+    private SpriteRenderer _sr;
     
     // Internal Variables
     private int _moveState = 0;
@@ -22,6 +23,7 @@ public class CharacterMove : MonoBehaviour
     private void Awake()
     {
         _rb2d = GetComponent<Rigidbody2D>();
+        _sr = GetComponent<SpriteRenderer>();
     }
 
     private void Update()
@@ -38,6 +40,8 @@ public class CharacterMove : MonoBehaviour
         }
         
         _rb2d.velocity = new Vector2(Mathf.Clamp(_rb2d.velocity.x, -maxSpeed, maxSpeed), _rb2d.velocity.y);
+        
+        if (Mathf.Abs(_rb2d.velocity.x) >= 0.01f) _sr.flipX = _rb2d.velocity.x < 0;
     }
     
     #endregion
