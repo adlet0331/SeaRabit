@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -42,6 +43,22 @@ public class CharacterMove : MonoBehaviour
 
     private void Update()
     {
+        // Detect down direction Logic
+        var circleOrigin = transform.right * -0.065f + transform.up * -0.0875f;
+        // var hitPoints = Physics2D.CircleCastAll(transform.position + circleOrigin, 0.05f, Vector2.down);
+        var hitPoints = Physics2D.RaycastAll(transform.position + circleOrigin, -transform.up, 0.1f);
+
+        if (hitPoints.Length > 0)
+        {
+            var calculatedDown =
+                hitPoints
+                .Where(hit => hit.collider.gameObject != gameObject)
+                .Aggregate(Vector2.zero, (current, hit) => current - hit.normal);
+            //hitPoints.Aggregate(Vector2.zero, (current, hit) => current - hit.normal);
+            downDirection = calculatedDown.normalized;
+        }
+        else downDirection = Vector2.down;
+        
         // Move Logic
         if (moveTimer > 0f)  moveTimer -= Time.deltaTime;
         else moveState = 0;
@@ -58,12 +75,7 @@ public class CharacterMove : MonoBehaviour
         
         // Limit Velocity and Rotation
         _rb2d.velocity = new Vector2(Mathf.Clamp(_rb2d.velocity.x, -maxSpeed, maxSpeed), _rb2d.velocity.y);
-        _rb2d.rotation = Mathf.Clamp(_rb2d.rotation, -90f, 90f);
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        downDirection = -collision.contacts[0].normal;
+        _rb2d.rotation = Mathf.Clamp(_rb2d.rotation, -45f, 45f);
     }
     
     #endregion
@@ -129,6 +141,21 @@ public class CharacterMove : MonoBehaviour
     private void OnKeySpace(InputValue value)
     {
         if (!value.isPressed) return;
+    }
+    
+    #endregion
+    
+    #region Debug Actions
+
+    private void OnDrawGizmos()
+    {
+        var originPoint = transform.position + transform.right * -0.065f + transform.up * -0.0875f;
+        
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(originPoint, originPoint - transform.up * 0.1f);
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(originPoint, originPoint + (Vector3)downDirection * 0.1f);
     }
     
     #endregion
