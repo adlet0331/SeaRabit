@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 
 namespace MapReset
 {
-    public class ResetableObject : MonoBehaviour, IResetable
+    public class ResetableObject : MonoBehaviour
     {
         [SerializeField] private Vector3 _initPosition;
         [SerializeField] private Quaternion _initRotation;
