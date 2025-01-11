@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -28,14 +27,17 @@ namespace NonDestroyObject
         [SerializeField] private AudioClip[] bgmClips;
         [SerializeField] private AudioSource bgmAudioSource;
 
-        public void GenerateAudioSourceAndPlay(Transform targetTransform, AudioClipEnum soundClipEnum)
+        public Transform GenerateAudioSourceAndPlay(Transform targetTransform, AudioClipEnum soundClipEnum)
         {
-            var soundObject = Instantiate(targetTransform);
+            var soundObject = new GameObject();
+            soundObject.transform.position = targetTransform.position;
             AudioSource objectSource = soundObject.AddComponent<AudioSource>();
             objectSource.clip = audioClips[(int)soundClipEnum];
             
             objectSource.Play();
             StartCoroutine(DestroyAfterTime(soundObject.gameObject, objectSource.clip.length));
+
+            return soundObject.transform;
         }
         
         IEnumerator DestroyAfterTime(GameObject willbeDestroyedObject, float time)
