@@ -16,6 +16,7 @@ public class CharacterMove : MonoBehaviour
     // Components
     private Rigidbody2D _rb2d;
     private SpriteRenderer _sr;
+    private Animator _anim;
     
     // Internal Variables
     private int moveState;
@@ -35,6 +36,9 @@ public class CharacterMove : MonoBehaviour
     private Vector2 RightDirection => new Vector2(-downDirection.y, downDirection.x); // downDirection rotated +90 degrees
     
     public StaminaSystem staminaSystem;
+    
+    // Hashes
+    private readonly int _walkHash = Animator.StringToHash("Walk");
     
     #region Movement Logic
 
@@ -102,7 +106,7 @@ public class CharacterMove : MonoBehaviour
         else _rb2d.AddForce(forceDirection, ForceMode2D.Impulse);
             
         _sr.flipX = lookDirection < 0;
-            
+        _anim.SetTrigger(_walkHash);
         moveState = 0;
     }
     private void MovementCeiling(bool stamina = true)
@@ -129,6 +133,7 @@ public class CharacterMove : MonoBehaviour
         
         _rb2d = GetComponent<Rigidbody2D>();
         _sr = GetComponent<SpriteRenderer>();
+        _anim = GetComponent<Animator>();
 
         moveState = 0;
         moveTimer = 0f;
@@ -160,7 +165,7 @@ public class CharacterMove : MonoBehaviour
             else
             {
                 Vector2 distanceVec = _rb2d.position - holdingCeiling.position;
-                holdingCeiling.AddForce(distanceVec.normalized * 0.25f, ForceMode2D.Force);
+                holdingCeiling.velocity = distanceVec.normalized * _rb2d.velocity.magnitude;
             }
         }
         else MovementNormal(spacePressed && staminaSystem.CanUseStamina);
@@ -170,6 +175,8 @@ public class CharacterMove : MonoBehaviour
         _rb2d.rotation = Mathf.Clamp(_rb2d.rotation, -45f, 45f);
         
         if (!isGrounded) _rb2d.AddTorque(-_rb2d.rotation / 90f * 0.25f, ForceMode2D.Force);
+
+        _sr.flipY = ceilingHolding;
     }
     
     #endregion
