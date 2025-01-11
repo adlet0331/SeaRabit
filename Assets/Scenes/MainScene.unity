@@ -37943,7 +37943,7 @@ GameObject:
   - component: {fileID: 803716655}
   - component: {fileID: 803716657}
   - component: {fileID: 803716658}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85269,7 +85269,7 @@ GameObject:
   - component: {fileID: 1553752426}
   - component: {fileID: 1553752427}
   - component: {fileID: 1553752428}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Can
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85428,7 +85428,7 @@ GameObject:
   - component: {fileID: 1564437446}
   - component: {fileID: 1564437449}
   - component: {fileID: 1564437448}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Stone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
