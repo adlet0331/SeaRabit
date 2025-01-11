@@ -1,3 +1,4 @@
+using System.Collections;
 using NonDestroyObject;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -18,7 +19,15 @@ namespace MapObjects
                 return;
             }
             if (col.gameObject.layer != 6) return;
+            StartCoroutine(DeathCoroutine());
+        }
+
+        private IEnumerator DeathCoroutine()
+        {
+            GameObject.Find("Transition").GetComponent<Transition>().FadeOut();
+            GameObject.FindObjectOfType<CharacterMove>().OnDeath();
             SoundManager.Instance.GenerateAudioSourceAndPlay(transform, AudioClipEnum.ResetPortal);
+            yield return new WaitForSeconds(1.1f);
             SceneManager.LoadScene("TempScene");
         }
     }

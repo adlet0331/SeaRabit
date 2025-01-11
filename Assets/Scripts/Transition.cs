@@ -1,0 +1,17 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class Transition : MonoBehaviour
+{
+    [SerializeField] private Image transitionImage;
+    [SerializeField] private Animator transitionAnimator;
+    
+    private readonly int _fadeOutHash = Animator.StringToHash("FadeOut");
+
+    public void FadeOut()
+    {
+        transitionAnimator.SetTrigger(_fadeOutHash);
+    }
+}
