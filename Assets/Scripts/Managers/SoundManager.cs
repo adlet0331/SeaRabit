@@ -6,10 +6,10 @@ namespace NonDestroyObject
 {
     public enum AudioClipEnum
     {
-        Intro4CutManga1 = 0,
-        Intro4CutManga2 = 1,
-        CharacterMove1 = 2,
-        CharacterMove2 = 3,
+        CharacterMove1 = 0,
+        CharacterMove2 = 1,
+        Intro4CutManga1 = 2,
+        Intro4CutManga2 = 3,
         ResetPortal = 4,
         Bubble = 5
     }
