@@ -16,8 +16,8 @@ namespace MapObjects
                 return;
             }
             if (col.gameObject.layer != 6) return;
-            SceneManager.LoadScene("MainScene");
             SoundManager.Instance.GenerateAudioSourceAndPlay(transform, AudioClipEnum.ResetPortal);
+            SceneManager.LoadScene("TempScene");
         }
     }
 }

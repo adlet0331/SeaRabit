@@ -55,5 +55,10 @@ namespace MapObjects
             }
             yield return null;
         }
+
+        private void OnDestroy()
+        {
+            if (activatedCoroutine != null) StopCoroutine(activatedCoroutine);
+        }
     }
 }
