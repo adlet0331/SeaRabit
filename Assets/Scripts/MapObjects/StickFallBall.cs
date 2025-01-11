@@ -1,9 +1,10 @@
+using MapObjects;
 using NonDestroyObject;
 using UnityEngine;
 
 public class StickFallBall : MonoBehaviour
 {
-    [SerializeField] private int triggerInt;
+    [SerializeField] private MovingObjectWhenTriggered _movingObjectWhenTriggered;
     [SerializeField] private Vector2 initDirection;
     
     private bool _isActivated = false;
@@ -18,7 +19,7 @@ public class StickFallBall : MonoBehaviour
         
         if (col == null) return;
         if (col.gameObject.layer != 6) return;
-        if (triggerInt >= 0) MovingWhenTriggeredManger.Instance.ObjectTriggered(triggerInt);
+        if (_movingObjectWhenTriggered != null) _movingObjectWhenTriggered.MoveTriggered();
         
         var rb2d = GetComponent<Rigidbody2D>();
         rb2d.gravityScale = 1;
