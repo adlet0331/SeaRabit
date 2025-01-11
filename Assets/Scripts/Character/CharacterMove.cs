@@ -160,8 +160,7 @@ public class CharacterMove : MonoBehaviour
             else
             {
                 Vector2 distanceVec = _rb2d.position - holdingCeiling.position;
-                holdingCeiling.AddForce(distanceVec.normalized, ForceMode2D.Force);
-                _rb2d.AddForce(distanceVec.normalized, ForceMode2D.Force);
+                holdingCeiling.AddForce(distanceVec.normalized * 0.25f, ForceMode2D.Force);
             }
         }
         else MovementNormal(spacePressed && staminaSystem.CanUseStamina);
