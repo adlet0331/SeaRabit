@@ -10,6 +10,7 @@ namespace MapObjects
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
+            if (collision == null) return;
             MovingWhenTriggeredManger.Instance.ObjectTriggered(0);
             
             if (collision.gameObject.layer != 6) return;

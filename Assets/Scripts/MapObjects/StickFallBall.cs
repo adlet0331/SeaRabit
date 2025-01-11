@@ -11,6 +11,7 @@ public class StickFallBall : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D col)
     {
+        if (col == null) return;
         if (col.gameObject.layer != 6) return;
         if (triggerInt >= 0) MovingWhenTriggeredManger.Instance.ObjectTriggered(triggerInt);
         GetComponent<Rigidbody2D>().gravityScale = 1;
