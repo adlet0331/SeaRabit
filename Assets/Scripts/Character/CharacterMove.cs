@@ -39,6 +39,7 @@ public class CharacterMove : MonoBehaviour
     
     // Hashes
     private readonly int _walkHash = Animator.StringToHash("Walk");
+    private readonly int _deathHash = Animator.StringToHash("Death");
     
     #region Movement Logic
 
@@ -121,6 +122,15 @@ public class CharacterMove : MonoBehaviour
         _sr.flipX = lookDirection < 0;
             
         moveState = 0;
+    }
+    
+    #endregion
+    
+    # region Extra Logic
+
+    public void OnDeath()
+    {
+        _anim.SetTrigger(_deathHash);
     }
     
     #endregion

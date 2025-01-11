@@ -11,7 +11,6 @@ namespace MapObjects
         private void OnCollisionEnter2D(Collision2D collision)
         {
             if (collision == null) return;
-            MovingWhenTriggeredManger.Instance.ObjectTriggered(0);
             
             if (collision.gameObject.layer != 6) return;
             var angle = (transform.rotation.eulerAngles.z + 90.0f) * Math.PI / 180.0f; 
