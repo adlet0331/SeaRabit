@@ -6,10 +6,12 @@ namespace MapObjects
 {
     public class ResetCollisionObject : MonoBehaviour
     {
+        [SerializeField] private bool deactivateOnPearl;
+        
         private void OnCollisionEnter2D(Collision2D col)
         {
             if (col == null) return;
-            if (col.gameObject.layer == 9)
+            if (deactivateOnPearl && col.gameObject.layer == 9)
             {
                 gameObject.SetActive(false);
                 col.gameObject.SetActive(false);
