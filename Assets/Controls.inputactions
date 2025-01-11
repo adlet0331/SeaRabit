@@ -9,7 +9,7 @@
                     "name": "KeyW",
                     "type": "Value",
                     "id": "8703bc33-fc61-44d2-860e-67400f53037e",
-                    "expectedControlType": "Integer",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -45,7 +45,7 @@
                     "name": "KeySpace",
                     "type": "Value",
                     "id": "871afd8e-8ba4-444d-b9a0-cf71c292038e",
-                    "expectedControlType": "Integer",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -56,6 +56,17 @@
                     "name": "",
                     "id": "946bc371-ea7e-4d10-8158-27a5e8b8f626",
                     "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "KeyW",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5122cd1a-5e3e-48a1-9ffe-1aaa2ec39128",
+                    "path": "<Keyboard>/upArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -76,6 +87,17 @@
                 },
                 {
                     "name": "",
+                    "id": "32d37485-fe35-4ac4-9c79-c009411f9e0a",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "KeyA",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "438650e3-89f4-4aed-8645-540dfbcf75be",
                     "path": "<Keyboard>/s",
                     "interactions": "",
@@ -87,8 +109,30 @@
                 },
                 {
                     "name": "",
+                    "id": "cba0853a-8098-4e9f-a6fd-2fde99c495be",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "KeyS",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "7e4da0f8-779a-4327-a262-51d3029a8065",
                     "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "KeyD",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "45acb322-ae8d-4ec0-a4c4-f120f11c5251",
+                    "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
