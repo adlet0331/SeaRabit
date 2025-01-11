@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
-public class CutSceneObject : MonoBehaviour
+public class IntroCutSceneObject : MonoBehaviour
 {
     [SerializeField] private float minPressTime;
     [SerializeField] private Sprite[] Scenes;
