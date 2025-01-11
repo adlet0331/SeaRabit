@@ -27,6 +27,7 @@ public class CharacterMove : MonoBehaviour
     private bool isGrounded;
     private bool ceilingHoldable;
     private bool ceilingHolding;
+    private Rigidbody2D holdingCeiling;
 
     private bool upPressed;
     private bool spacePressed;
@@ -80,12 +81,14 @@ public class CharacterMove : MonoBehaviour
         {
             ceilingHolding = hitPoints.Length > 0;
             ceilingDirection = ceilingHolding ? -hitPoints[0].normal : Vector2.up;
+            holdingCeiling = ceilingHolding ? hitPoints[0].transform.GetComponent<Rigidbody2D>() : null;
             return;
         }
 
         ceilingHoldable = hitPoints.Length > 0;
 
         ceilingDirection = ceilingHoldable ? -hitPoints[0].normal : Vector2.zero;
+        holdingCeiling = ceilingHoldable ? hitPoints[0].transform.GetComponent<Rigidbody2D>() : null;
     }
 
     private void MovementNormal(bool stamina = false)
@@ -135,6 +138,7 @@ public class CharacterMove : MonoBehaviour
         isGrounded = false;
         ceilingHoldable = false;
         ceilingHolding = false;
+        holdingCeiling = null;
 
         staminaSystem = GetComponent<StaminaSystem>();
     }
@@ -151,7 +155,14 @@ public class CharacterMove : MonoBehaviour
         if (ceilingHolding && staminaSystem.CanUseStamina)
         {
             MovementCeiling();
-            _rb2d.AddForce((Vector2.down - ceilingDirection.normalized) * (Physics2D.gravity.y * _rb2d.gravityScale * 0.125f), ForceMode2D.Force);
+            
+            if (holdingCeiling.bodyType == RigidbodyType2D.Static) _rb2d.AddForce((Vector2.down - ceilingDirection.normalized) * (Physics2D.gravity.y * _rb2d.gravityScale * 0.125f), ForceMode2D.Force);
+            else
+            {
+                Vector2 distanceVec = _rb2d.position - holdingCeiling.position;
+                holdingCeiling.AddForce(distanceVec.normalized, ForceMode2D.Force);
+                _rb2d.AddForce(distanceVec.normalized, ForceMode2D.Force);
+            }
         }
         else MovementNormal(spacePressed && staminaSystem.CanUseStamina);
         
