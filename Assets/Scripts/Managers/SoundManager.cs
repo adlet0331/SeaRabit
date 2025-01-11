@@ -30,6 +30,7 @@ namespace NonDestroyObject
         private void Start()
         {
             bgmAudioSource.clip = bgmClips[0];
+            bgmAudioSource.loop = true;
             bgmAudioSource.Play();
         }
 
