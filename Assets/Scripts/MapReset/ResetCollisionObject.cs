@@ -1,11 +1,10 @@
-using System;
-using MapObjects;
 using NonDestroyObject;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace MapReset
 {
-    public class ResetCollisionObject : ResetableObject
+    public class ResetCollisionObject : MonoBehaviour
     {
         private void OnCollisionEnter2D(Collision2D col)
         {
@@ -15,8 +14,8 @@ namespace MapReset
                 col.gameObject.SetActive(false);
             }
             if (col.gameObject.layer != 6) return;
-            MapResetManager.Instance.ResetMap();
-            SoundManager.Instance.GenerateAudioSourceAndPlay( transform, AudioClipEnum.ResetPortal);
+            SceneManager.LoadScene("MainScene");
+            SoundManager.Instance.GenerateAudioSourceAndPlay(transform, AudioClipEnum.ResetPortal);
         }
     }
 }

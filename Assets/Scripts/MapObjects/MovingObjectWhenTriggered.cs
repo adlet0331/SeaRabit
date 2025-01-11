@@ -1,10 +1,6 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using MapReset;
 using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.UIElements;
 
 namespace MapObjects
 {
@@ -14,23 +10,12 @@ namespace MapObjects
         public Transform tTransform;
         public float time;
     }
-    public class MovingObjectWhenTriggered : ResetableObject
+    public class MovingObjectWhenTriggered : MonoBehaviour
     {
         [SerializeField] private MoveTargetAndTime[] TargetAndTimes;
         [SerializeField] private Transform headMovingTransform;
         private bool isTriggered;
         private Coroutine activatedCoroutine;
-
-        public override void ResetStatus()
-        {
-            base.ResetStatus();
-            if (activatedCoroutine != null)
-            {
-                StopCoroutine(activatedCoroutine);
-            }
-            gameObject.SetActive(true);
-            isTriggered = false;
-        }
 
         private void Start()
         {
