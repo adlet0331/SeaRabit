@@ -22473,7 +22473,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _initPosition: {x: 0, y: 0, z: 0}
   _initRotation: {x: 0, y: 0, z: 0, w: 0}
-  triggerInt: 2
+  triggerInt: 1
 --- !u!58 &573757373
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -47593,7 +47593,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _initPosition: {x: 0, y: 0, z: 0}
   _initRotation: {x: 0, y: 0, z: 0, w: 0}
-  triggerInt: 3
+  triggerInt: 2
 --- !u!58 &861265554
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -47982,7 +47982,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _initPosition: {x: 0, y: 0, z: 0}
   _initRotation: {x: 0, y: 0, z: 0, w: 0}
-  triggerInt: 1
+  triggerInt: 0
 --- !u!58 &1063861144
 CircleCollider2D:
   m_ObjectHideFlags: 0
