@@ -1,9 +1,6 @@
 using System;
 using System.Collections;
-using MapReset;
 using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.UIElements;
 
 namespace MapObjects
 {
@@ -13,22 +10,12 @@ namespace MapObjects
         public Transform tTransform;
         public float time;
     }
-    public class MovingObjectWhenTriggered : ResetableObject
+    public class MovingObjectWhenTriggered : MonoBehaviour
     {
         [SerializeField] private MoveTargetAndTime[] TargetAndTimes;
+        [SerializeField] private Transform headMovingTransform;
         private bool isTriggered;
         private Coroutine activatedCoroutine;
-
-        public override void ResetStatus()
-        {
-            base.ResetStatus();
-            if (activatedCoroutine != null)
-            {
-                StopCoroutine(activatedCoroutine);
-            }
-            gameObject.SetActive(true);
-            isTriggered = false;
-        }
 
         private void Start()
         {
@@ -45,15 +32,15 @@ namespace MapObjects
         IEnumerator StartMove(int index)
         {
             var target = TargetAndTimes[index];
-            var moveDirection = target.tTransform.position - transform.position;
-            var moveInterval = moveDirection / target.time * Time.fixedDeltaTime;
+            var headMoveDirection = target.tTransform.position - headMovingTransform.position;
+            var headMoveInterval = headMoveDirection / target.time * Time.fixedDeltaTime;
             
-            var facing = Math.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
-            transform.Rotate(new Vector3(0, 0, (float)facing) - transform.rotation.eulerAngles);
+            var facing = Math.Atan2(headMoveDirection.y, headMoveDirection.x) * Mathf.Rad2Deg;
+            headMovingTransform.Rotate(new Vector3(0, 0, (float)facing) - headMovingTransform.rotation.eulerAngles);
 
             for (int i = 0; i < target.time / Time.fixedDeltaTime; i++)
             {
-                transform.position += moveInterval;
+                headMovingTransform.position += headMoveInterval;
                 yield return new WaitForFixedUpdate();
             }
 
