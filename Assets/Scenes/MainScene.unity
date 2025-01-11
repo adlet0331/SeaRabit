@@ -308,8 +308,9 @@ GameObject:
   - component: {fileID: 9496533}
   - component: {fileID: 9496534}
   - component: {fileID: 9496535}
+  - component: {fileID: 9496536}
   m_Layer: 0
-  m_Name: BG1
+  m_Name: Layer-6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16621,6 +16622,19 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
+--- !u!114 &9496536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9496532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a1792f4c0938864382b5615558d87ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parallaxFactor: 0.8
 --- !u!1 &32638139
 GameObject:
   m_ObjectHideFlags: 0
@@ -22334,11 +22348,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 373168926377694100, guid: 425d7d91cdc908b4487987a970549757, type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: 0.28783262
+      value: 0.28783074
       objectReference: {fileID: 0}
     - target: {fileID: 373168926377694100, guid: 425d7d91cdc908b4487987a970549757, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: -0.20054242
+      value: -0.20054182
       objectReference: {fileID: 0}
     - target: {fileID: 1457559185013774543, guid: 425d7d91cdc908b4487987a970549757, type: 3}
       propertyPath: m_ConnectedAnchor.x
@@ -22346,15 +22360,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1457559185013774543, guid: 425d7d91cdc908b4487987a970549757, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: 0.1777397
+      value: 0.17773922
       objectReference: {fileID: 0}
     - target: {fileID: 1815087533903040011, guid: 425d7d91cdc908b4487987a970549757, type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: 0.36257538
+      value: 0.36257717
       objectReference: {fileID: 0}
     - target: {fileID: 1815087533903040011, guid: 425d7d91cdc908b4487987a970549757, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: -0.00000011920929
+      value: -0.0000008940697
       objectReference: {fileID: 0}
     - target: {fileID: 3152868390301534716, guid: 425d7d91cdc908b4487987a970549757, type: 3}
       propertyPath: m_FlipX
@@ -22382,11 +22396,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4600477011807642888, guid: 425d7d91cdc908b4487987a970549757, type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: 28.954462
+      value: 31.974463
       objectReference: {fileID: 0}
     - target: {fileID: 4600477011807642888, guid: 425d7d91cdc908b4487987a970549757, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: -5.666017
+      value: -9.546017
       objectReference: {fileID: 0}
     - target: {fileID: 5087768863438807432, guid: 425d7d91cdc908b4487987a970549757, type: 3}
       propertyPath: m_ConnectedAnchor.x
@@ -22402,7 +22416,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5221382909661638510, guid: 425d7d91cdc908b4487987a970549757, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: 0.15335317
+      value: 0.15335365
       objectReference: {fileID: 0}
     - target: {fileID: 5782330687467331744, guid: 425d7d91cdc908b4487987a970549757, type: 3}
       propertyPath: m_LocalScale.x
@@ -22490,7 +22504,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6711271203044709631, guid: 425d7d91cdc908b4487987a970549757, type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: 0.3208294
+      value: 0.3208313
       objectReference: {fileID: 0}
     - target: {fileID: 6711271203044709631, guid: 425d7d91cdc908b4487987a970549757, type: 3}
       propertyPath: m_ConnectedAnchor.y
@@ -22530,11 +22544,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8739441582030400945, guid: 425d7d91cdc908b4487987a970549757, type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: 0.42432478
+      value: 0.4243267
       objectReference: {fileID: 0}
     - target: {fileID: 8739441582030400945, guid: 425d7d91cdc908b4487987a970549757, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: -0.06330711
+      value: -0.06330764
       objectReference: {fileID: 0}
     - target: {fileID: 8945125879103666722, guid: 425d7d91cdc908b4487987a970549757, type: 3}
       propertyPath: m_LocalPosition.x
@@ -22925,8 +22939,9 @@ GameObject:
   - component: {fileID: 620307519}
   - component: {fileID: 620307521}
   - component: {fileID: 620307520}
+  - component: {fileID: 620307522}
   m_Layer: 0
-  m_Name: BG2
+  m_Name: Layer-7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37986,6 +38001,19 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &620307522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620307518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a1792f4c0938864382b5615558d87ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parallaxFactor: 0.6
 --- !u!1001 &635077017
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38352,6 +38380,7 @@ GameObject:
   - component: {fileID: 781504476}
   - component: {fileID: 781504477}
   - component: {fileID: 781504478}
+  - component: {fileID: 781504479}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -38562,6 +38591,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followingTransform: {fileID: 1992643084}
+--- !u!114 &781504479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 781504472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 607169710df7e794f97c92573b064381, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &797877381
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -48442,6 +48483,7 @@ GameObject:
   m_Component:
   - component: {fileID: 920150933}
   - component: {fileID: 920150932}
+  - component: {fileID: 920150934}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -48487,6 +48529,19 @@ Transform:
   - {fileID: 1222958248}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &920150934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 920150931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5107cfd9e72bfe44e82e98e18cc9d46a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parallaxCamera: {fileID: 781504479}
 --- !u!1 &926131933
 GameObject:
   m_ObjectHideFlags: 0
@@ -50489,8 +50544,9 @@ GameObject:
   - component: {fileID: 1347715024}
   - component: {fileID: 1347715026}
   - component: {fileID: 1347715025}
+  - component: {fileID: 1347715027}
   m_Layer: 0
-  m_Name: BG3
+  m_Name: Layer-8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64280,6 +64336,19 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &1347715027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1347715023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a1792f4c0938864382b5615558d87ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parallaxFactor: 0.4
 --- !u!1 &1434144295
 GameObject:
   m_ObjectHideFlags: 0
@@ -64291,8 +64360,9 @@ GameObject:
   - component: {fileID: 1434144296}
   - component: {fileID: 1434144298}
   - component: {fileID: 1434144297}
+  - component: {fileID: 1434144299}
   m_Layer: 0
-  m_Name: Sea
+  m_Name: Layer-0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -86692,6 +86762,19 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &1434144299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1434144295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a1792f4c0938864382b5615558d87ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parallaxFactor: 1
 --- !u!1 &1478345384
 GameObject:
   m_ObjectHideFlags: 0
@@ -92784,8 +92867,9 @@ GameObject:
   - component: {fileID: 2040016633}
   - component: {fileID: 2040016635}
   - component: {fileID: 2040016634}
+  - component: {fileID: 2040016636}
   m_Layer: 0
-  m_Name: BG4
+  m_Name: Layer-9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -105689,6 +105773,19 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &2040016636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2040016632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a1792f4c0938864382b5615558d87ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parallaxFactor: 0.2
 --- !u!1001 &2075003598
 PrefabInstance:
   m_ObjectHideFlags: 0
