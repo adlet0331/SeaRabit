@@ -151,7 +151,7 @@ public class CharacterMove : MonoBehaviour
         if (ceilingHolding && staminaSystem.CanUseStamina)
         {
             MovementCeiling();
-            _rb2d.AddForce((Vector2.down - ceilingDirection.normalized) * (Physics2D.gravity.y * _rb2d.gravityScale * 0.5f), ForceMode2D.Force);
+            _rb2d.AddForce((Vector2.down - ceilingDirection.normalized) * (Physics2D.gravity.y * _rb2d.gravityScale * 0.125f), ForceMode2D.Force);
         }
         else MovementNormal(spacePressed && staminaSystem.CanUseStamina);
         
