@@ -10,7 +10,7 @@ namespace DefaultNamespace
         [SerializeField] private Transform howToPlayImage;
         public void StartGameButton()
         {
-            SceneManager.LoadScene("TestScene", LoadSceneMode.Single);
+            SceneManager.LoadScene("MainScene", LoadSceneMode.Single);
         }
 
         public void ShowHowToPlay(bool isShow)
