@@ -165,7 +165,7 @@ public class CharacterMove : MonoBehaviour
             else
             {
                 Vector2 distanceVec = _rb2d.position - holdingCeiling.position;
-                holdingCeiling.velocity = distanceVec.normalized * _rb2d.velocity.magnitude;
+                holdingCeiling.velocity = Vector2.down * (_rb2d.velocity.magnitude + 0.1f);
             }
         }
         else MovementNormal(spacePressed && staminaSystem.CanUseStamina);
