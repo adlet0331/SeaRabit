@@ -509,7 +509,7 @@ GameObject:
   - component: {fileID: 109988476}
   - component: {fileID: 109988475}
   - component: {fileID: 109988474}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TestPlatform (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -667,7 +667,7 @@ GameObject:
   - component: {fileID: 113953340}
   - component: {fileID: 113953339}
   - component: {fileID: 113953338}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TestPlatform (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -825,7 +825,7 @@ GameObject:
   - component: {fileID: 117379196}
   - component: {fileID: 117379195}
   - component: {fileID: 117379194}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TestPlatform (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -983,7 +983,7 @@ GameObject:
   - component: {fileID: 313731971}
   - component: {fileID: 313731970}
   - component: {fileID: 313731969}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TestPlatform (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1197,7 +1197,7 @@ GameObject:
   - component: {fileID: 505107962}
   - component: {fileID: 505107961}
   - component: {fileID: 505107960}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TestPlatform (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1402,7 +1402,7 @@ GameObject:
   - component: {fileID: 675323229}
   - component: {fileID: 675323228}
   - component: {fileID: 675323227}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TestPlatform (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1734,7 +1734,7 @@ GameObject:
   - component: {fileID: 718834882}
   - component: {fileID: 718834883}
   - component: {fileID: 718834884}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TestStickBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1910,7 +1910,7 @@ GameObject:
   - component: {fileID: 762518271}
   - component: {fileID: 762518270}
   - component: {fileID: 762518269}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TestPlatform (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2298,7 +2298,7 @@ GameObject:
   - component: {fileID: 1001876674}
   - component: {fileID: 1001876673}
   - component: {fileID: 1001876672}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TestPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2615,7 +2615,7 @@ Transform:
   m_GameObject: {fileID: 1258925367}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.8, y: -0.08, z: 0}
+  m_LocalPosition: {x: 0.81, y: 0.11, z: 0}
   m_LocalScale: {x: 0.38185978, y: 0.10056391, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2805,7 +2805,7 @@ GameObject:
   - component: {fileID: 2058435761}
   - component: {fileID: 2058435760}
   - component: {fileID: 2058435759}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TestPlatform (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3134,7 +3134,7 @@ GameObject:
   - component: {fileID: 2092113101}
   - component: {fileID: 2092113100}
   - component: {fileID: 2092113099}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TestPlatform (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
