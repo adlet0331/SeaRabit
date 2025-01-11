@@ -27,6 +27,16 @@ namespace NonDestroyObject
         [SerializeField] private AudioClip[] bgmClips;
         [SerializeField] private AudioSource bgmAudioSource;
 
+        private void Awake()
+        {
+            bgmAudioSource.clip = bgmClips[0];
+        }
+
+        private void OnEnable()
+        {
+            bgmAudioSource.Play();
+        }
+
         public Transform GenerateAudioSourceAndPlay(Transform targetTransform, AudioClipEnum soundClipEnum)
         {
             var soundObject = new GameObject();
