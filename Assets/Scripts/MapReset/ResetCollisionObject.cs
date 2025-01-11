@@ -1,3 +1,4 @@
+using System;
 using MapObjects;
 using NonDestroyObject;
 using UnityEngine;
@@ -10,6 +11,7 @@ namespace MapReset
         {
             if (col.gameObject.layer != 6) return;
             MapResetManager.Instance.ResetMap();
+            SoundManager.Instance.GenerateAudioSourceAndPlay( transform, AudioClipEnum.ResetPortal);
         }
     }
 }
