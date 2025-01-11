@@ -18,6 +18,7 @@ namespace MapReset
 
         public virtual void ResetStatus()
         {
+            gameObject.SetActive(true);
             transform.position = _initPosition;
             transform.rotation = _initRotation;
             var rigidBody = gameObject.GetComponent<Rigidbody2D>();

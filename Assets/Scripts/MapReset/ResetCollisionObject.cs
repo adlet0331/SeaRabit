@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace MapReset
 {
-    public class ResetCollisionObject : MonoBehaviour
+    public class ResetCollisionObject : ResetableObject
     {
         private void OnCollisionEnter2D(Collision2D col)
         {
