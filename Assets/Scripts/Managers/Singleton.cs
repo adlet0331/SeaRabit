@@ -23,6 +23,8 @@ namespace NonDestroyObject
                     DontDestroyOnLoad(singletonObject);
                     //Debug.Log(typeof(T).ToString() + "Singleton well made.");
                 }
+                
+                else if (_instance != this) Destroy(this.gameObject);
             }
         }
 
