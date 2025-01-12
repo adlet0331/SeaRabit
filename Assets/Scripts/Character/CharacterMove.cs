@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using NonDestroyObject;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -99,6 +100,8 @@ public class CharacterMove : MonoBehaviour
     private void MovementNormal(bool stamina = false)
     {
         if (Mathf.Abs(moveState) < 3) return;
+
+        SoundManager.Instance.GenerateAudioSourceAndPlay(transform, AudioClipEnum.CharacterMove1);
         
         lookDirection = (int)Mathf.Sign(moveState);
 
@@ -113,6 +116,8 @@ public class CharacterMove : MonoBehaviour
     private void MovementCeiling(bool stamina = true)
     {
         if (Mathf.Abs(moveState) < 3) return;
+        
+        SoundManager.Instance.GenerateAudioSourceAndPlay(transform, AudioClipEnum.CharacterMove1);
         
         lookDirection = (int)Mathf.Sign(moveState);
 

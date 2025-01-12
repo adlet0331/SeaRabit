@@ -46,6 +46,9 @@ namespace NonDestroyObject
             soundObject.transform.position = targetTransform.position;
             AudioSource objectSource = soundObject.AddComponent<AudioSource>();
             objectSource.clip = audioClips[(int)soundClipEnum];
+            objectSource.minDistance = 0.0f;
+            objectSource.volume = 1.0f;
+            if (soundClipEnum == AudioClipEnum.CharacterMove1) objectSource.volume = 0.3f;
             
             objectSource.Play();
             StartCoroutine(DestroyAfterTime(soundObject.gameObject, objectSource.clip.length));

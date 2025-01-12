@@ -1,9 +1,7 @@
-using System;
 using Cinemachine;
 using NonDestroyObject;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 
 public class FinalCutSceneObject : MonoBehaviour
 {
@@ -13,13 +11,12 @@ public class FinalCutSceneObject : MonoBehaviour
     private int currentIndex;
     private float afterSpacePressed;
     private SpriteRenderer _spriteRenderer;
-    private CinemachineImpulseSource _cinemachineImpulseSource;
 
     private void Start()
     {
+        SoundManager.Instance.SwitchBGM(Bgm.bgm2);
         currentIndex = 0;
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        _cinemachineImpulseSource = GetComponent<CinemachineImpulseSource>();
         afterSpacePressed = 0.0f;
     }
 
@@ -48,14 +45,13 @@ public class FinalCutSceneObject : MonoBehaviour
         switch (currentIndex)
         {
             case 0:
-                SoundManager.Instance.GenerateAudioSourceAndPlay(transform, AudioClipEnum.Intro4CutManga2);
+                SoundManager.Instance.GenerateAudioSourceAndPlay(transform, AudioClipEnum.Intro4CutManga1);
                 break;
             case 1:
                 SoundManager.Instance.GenerateAudioSourceAndPlay(transform, AudioClipEnum.Intro4CutManga1);
                 break;
             case 2:
                 SoundManager.Instance.GenerateAudioSourceAndPlay(transform, AudioClipEnum.Intro4CutManga1);
-                _cinemachineImpulseSource.GenerateImpulse();
                 break;
             case 3:
                 SoundManager.Instance.GenerateAudioSourceAndPlay(transform, AudioClipEnum.Intro4CutManga1);
