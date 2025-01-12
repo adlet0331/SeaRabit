@@ -12,7 +12,6 @@ namespace MapObjects
         private void OnCollisionEnter2D(Collision2D col)
         {
             if (col == null) return;
-            SoundManager.Instance.GenerateAudioSourceAndPlay(col.transform, AudioClipEnum.ResetPortal);
             if (deactivateOnPearl && col.gameObject.layer == 9)
             {
                 gameObject.SetActive(false);
@@ -20,6 +19,7 @@ namespace MapObjects
                 return;
             }
             if (col.gameObject.layer != 6) return;
+            SoundManager.Instance.GenerateAudioSourceAndPlay(col.transform, AudioClipEnum.ResetPortal);
             StartCoroutine(DeathCoroutine());
         }
 
