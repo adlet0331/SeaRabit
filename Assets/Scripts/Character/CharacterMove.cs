@@ -166,12 +166,15 @@ public class CharacterMove : MonoBehaviour
         // Move Logic
         if (moveTimer > 0f)  moveTimer -= Time.deltaTime;
         else moveState = 0;
+    }
 
+    private void FixedUpdate()
+    {
         if (ceilingHolding && staminaSystem.CanUseStamina)
         {
             MovementCeiling();
             
-            if (holdingCeiling.bodyType == RigidbodyType2D.Static) _rb2d.AddForce((Vector2.down - ceilingDirection.normalized) * (Physics2D.gravity.y * _rb2d.gravityScale * 0.125f), ForceMode2D.Force);
+            if (holdingCeiling.bodyType == RigidbodyType2D.Static) _rb2d.AddForce((Vector2.down - ceilingDirection.normalized) * (Physics2D.gravity.y * _rb2d.gravityScale), ForceMode2D.Force);
             else
             {
                 Vector2 distanceVec = _rb2d.position - holdingCeiling.position;
@@ -184,7 +187,7 @@ public class CharacterMove : MonoBehaviour
         _rb2d.velocity = new Vector2(Mathf.Clamp(_rb2d.velocity.x, -maxSpeed, maxSpeed), _rb2d.velocity.y);
         _rb2d.rotation = Mathf.Clamp(_rb2d.rotation, -45f, 45f);
         
-        if (!isGrounded) _rb2d.AddTorque(-_rb2d.rotation / 90f * 0.25f, ForceMode2D.Force);
+        if (!isGrounded) _rb2d.AddTorque(-_rb2d.rotation / 90f, ForceMode2D.Force);
 
         _sr.flipY = ceilingHolding;
     }
