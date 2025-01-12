@@ -42,8 +42,8 @@ namespace NonDestroyObject
             _shutdown = true;
         }
 
-        private void OnDestroy() {
+        /*private void OnDestroy() {
             _shutdown = true;
-        }
+        }*/
     }
 }
