@@ -14,7 +14,6 @@ public class FinalCutSceneObject : MonoBehaviour
 
     private void Start()
     {
-        SoundManager.Instance.SwitchBGM(Bgm.bgm2);
         currentIndex = 0;
         _spriteRenderer = GetComponent<SpriteRenderer>();
         afterSpacePressed = 0.0f;
